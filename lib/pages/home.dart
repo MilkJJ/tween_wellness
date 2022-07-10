@@ -17,13 +17,13 @@ class _HomeState extends State<Home> {
     super.initState();
     // Detects when user signed in
     googleSignIn.onCurrentUserChanged.listen((account) {
-      handleSignIn(account!);
+      handleSignIn(account);
     }, onError: (err) {
       print('Error signing in: $err');
     });
     // Reauthenticate user when app is opened
     googleSignIn.signInSilently(suppressErrors: false).then((account) {
-      handleSignIn(account!);
+      handleSignIn(account);
     }).catchError((err) {
       print('Error signing in: $err');
     });
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
             GestureDetector(
               onTap: login,
               child: Container(
-                width: 260.0,
+                width: 160.0,
                 height: 60.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
