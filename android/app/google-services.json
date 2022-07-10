@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "569008204612",
+    "firebase_url": "https://tween-wellness-app-6dc50-default-rtdb.firebaseio.com",
+    "project_id": "tween-wellness-app-6dc50",
+    "storage_bucket": "tween-wellness-app-6dc50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569008204612:android:bf85ca5ba26c3023294511",
+        "android_client_info": {
+          "package_name": "com.example.tween_wellness_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569008204612-56uujri7oh7gpvhphnevvhjfnrgitc43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tween_wellness_app",
+            "certificate_hash": "6ef0edee61dd162857ff9bba9dcf7e984f9e7037"
+          }
+        },
+        {
+          "client_id": "569008204612-p302mjeuhah7qk0o4m0f0eo70gg7g0r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM5TKKNH72chRPnZgE2L4ngrGkhTZZCNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569008204612-p302mjeuhah7qk0o4m0f0eo70gg7g0r6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
