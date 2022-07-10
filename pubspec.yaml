@@ -38,6 +38,13 @@ dependencies:
   google_sign_in: ^5.4.0
   firebase_auth: ^3.4.1
   provider: ^6.0.3
+  flutter_svg: ^1.1.1+1
+  cached_network_image: ^3.2.1
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.3.1
+  geolocator: ^9.0.0
+  image: ^3.2.0
+  geocoding: ^2.0.4
 
 
 dev_dependencies:
@@ -66,6 +73,8 @@ flutter:
   # assets:
   assets:
     - assets/images/google_signin_button.png
+    - assets/images/search.svg
+    - assets/images/upload.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

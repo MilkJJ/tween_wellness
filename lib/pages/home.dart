@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tween_wellness/models/user.dart';
 import 'package:tween_wellness/pages/activity_feed.dart';
 import 'package:tween_wellness/pages/create_account.dart';
 import 'package:tween_wellness/pages/profile.dart';
@@ -10,8 +12,11 @@ import 'package:tween_wellness/pages/upload.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
+final Reference storageRef = FirebaseStorage.instance.ref();
 final usersRef = FirebaseFirestore.instance.collection('users');
+final postsRef = FirebaseFirestore.instance.collection('posts');
 final DateTime timestamp = DateTime.now();
+User currentUser = User();
 
 class Home extends StatefulWidget {
   @override
@@ -57,7 +62,7 @@ class _HomeState extends State<Home> {
   createUserInFirestore() async {
     // 1) check if user exists in users collection in database (according to their id)
     final GoogleSignInAccount? user = googleSignIn.currentUser;
-    final DocumentSnapshot doc = await usersRef.doc(user!.id).get();
+    DocumentSnapshot doc = await usersRef.doc(user!.id).get();
 
     if (!doc.exists) {
       // 2) if the user doesn't exist, then we want to take them to the create account page
@@ -74,7 +79,11 @@ class _HomeState extends State<Home> {
         "bio": "",
         "timestamp": timestamp
       });
+
+      doc = await usersRef.doc(user.id).get();
     }
+
+    currentUser = User.fromDocument(doc);
   }
 
   @override
@@ -115,7 +124,7 @@ class _HomeState extends State<Home> {
             onPressed: logout,
           ),
           ActivityFeed(),
-          Upload(),
+          Upload(currentUser: currentUser),
           Search(),
           Profile(),
         ],
@@ -165,7 +174,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              '18Tween',
+              '18tween',
               style: TextStyle(
                 fontFamily: "Signatra",
                 fontSize: 60.0,
