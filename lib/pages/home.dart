@@ -3,11 +3,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tween_wellness/models/user.dart';
-import 'package:tween_wellness/pages/activity_feed.dart';
+import 'package:tween_wellness/pages/my_activities.dart';
+import 'package:tween_wellness/pages/notifications.dart';
 import 'package:tween_wellness/pages/create_account.dart';
 import 'package:tween_wellness/pages/profile.dart';
 import 'package:tween_wellness/pages/search.dart';
-import 'package:tween_wellness/pages/timeline.dart';
+import 'package:tween_wellness/pages/communities.dart';
 import 'package:tween_wellness/pages/upload.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -15,8 +16,13 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 final Reference storageRef = FirebaseStorage.instance.ref();
 final usersRef = FirebaseFirestore.instance.collection('users');
 final postsRef = FirebaseFirestore.instance.collection('posts');
+final commentsRef = FirebaseFirestore.instance.collection('comments');
+final activityFeedRef = FirebaseFirestore.instance.collection('feed');
+final followersRef = FirebaseFirestore.instance.collection('followers');
+final followingRef = FirebaseFirestore.instance.collection('following');
+final timelineRef = FirebaseFirestore.instance.collection('timeline');
 final DateTime timestamp = DateTime.now();
-User currentUser = User();
+User currentUser = User(id: '107236734546032898199');
 
 class Home extends StatefulWidget {
   @override
@@ -79,6 +85,12 @@ class _HomeState extends State<Home> {
         "bio": "",
         "timestamp": timestamp
       });
+      // make new user their own follower (to include their posts in their timeline)
+      await followersRef
+          .doc(user.id)
+          .collection('userFollowers')
+          .doc(user.id)
+          .set({});
 
       doc = await usersRef.doc(user.id).get();
     }
@@ -118,15 +130,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          // Timeline(),
-          RaisedButton(
-            child: Text('Logout'),
-            onPressed: logout,
-          ),
+          Timeline(currentUser: currentUser),
           ActivityFeed(),
           Upload(currentUser: currentUser),
-          Search(),
-          Profile(),
+          Activity(),
+          //Search(),
+          Profile(profileId: currentUser.id!),
         ],
         controller: pageController,
         onPageChanged: onPageChanged,
@@ -145,7 +154,7 @@ class _HomeState extends State<Home> {
                 size: 35.0,
               ),
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.search)),
+            BottomNavigationBarItem(icon: Icon(Icons.local_activity)),
             BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
           ]),
     );
@@ -174,7 +183,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              '18tween',
+              '18Tween',
               style: TextStyle(
                 fontFamily: "Signatra",
                 fontSize: 60.0,

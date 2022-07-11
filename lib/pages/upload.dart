@@ -129,7 +129,9 @@ class _UploadState extends State<Upload>
   }
 
   createPostInFirestore(
-      {String? mediaUrl, String? location, String? description}) {
+      {required String mediaUrl,
+      required String location,
+      required String description}) {
     postsRef
         .doc(widget.currentUser.id)
         .collection("userPosts")

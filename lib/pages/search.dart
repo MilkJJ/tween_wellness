@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tween_wellness/models/user.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -63,6 +64,8 @@ class _SearchState extends State<Search> {
 }
 
 class UserResult extends StatelessWidget {
+  UserResult(User user);
+
   @override
   Widget build(BuildContext context) {
     return Text("User Result");

@@ -50,7 +50,8 @@ class _CreateAccountState extends State<CreateAccount> {
                   padding: EdgeInsets.all(16.0),
                   child: Container(
                     child: Form(
-                      autovalidateMode: AutovalidateMode.always, key: _formKey,
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.always, //true
                       child: TextFormField(
                         validator: (val) {
                           if (val!.trim().length < 3 || val.isEmpty) {

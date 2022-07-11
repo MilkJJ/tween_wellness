@@ -9,7 +9,7 @@ class User {
   final String? bio;
 
   User({
-    this.id,
+    required this.id,
     this.username,
     this.email,
     this.photoUrl,
