@@ -134,7 +134,7 @@ class _HomeState extends State<Home> {
           ActivityFeed(),
           Upload(currentUser: currentUser),
           Activity(),
-          //Search(),
+          Search(),
           Profile(profileId: currentUser.id!),
         ],
         controller: pageController,
@@ -155,6 +155,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             BottomNavigationBarItem(icon: Icon(Icons.local_activity)),
+            BottomNavigationBarItem(icon: Icon(Icons.search)),
             BottomNavigationBarItem(icon: Icon(Icons.account_circle)),
           ]),
     );

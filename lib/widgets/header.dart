@@ -9,7 +9,7 @@ AppBar header(context,
       style: TextStyle(
         color: Colors.white,
         fontFamily: isAppTitle ? "Signatra" : "",
-        fontSize: isAppTitle ? 50.0 : 22.0,
+        fontSize: isAppTitle ? 30.0 : 22.0,
       ),
       overflow: TextOverflow.ellipsis,
     ),
