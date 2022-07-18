@@ -141,10 +141,9 @@ class _PostState extends State<Post> {
               SimpleDialogOption(
                   onPressed: () {
                     Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) => Home()),
-    );
+                      context,
+                      MaterialPageRoute(builder: (context) => Home()),
+                    );
                     deletePost();
                   },
                   child: Text(
@@ -279,7 +278,7 @@ class _PostState extends State<Post> {
           //             size: 80.0,
           //             color: Colors.red,
           //           );
-          //           return child!; 
+          //           return child!;
           //         },
           //       )
           //     : Text(""),
