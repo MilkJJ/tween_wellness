@@ -7,6 +7,7 @@ import 'package:tween_wellness/pages/profile.dart';
 import 'package:tween_wellness/widgets/header.dart';
 import 'package:tween_wellness/widgets/progress.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:firebase_database/firebase_database.dart';
 
 class ActivityFeed extends StatefulWidget {
   @override
@@ -14,6 +15,60 @@ class ActivityFeed extends StatefulWidget {
 }
 
 class _ActivityFeedState extends State<ActivityFeed> {
+
+  String _done1 = '';
+  final _database1 = FirebaseDatabase.instance.ref();
+
+  @override
+  void initState() {
+    super.initState();
+    _activateListeners();
+  }
+    void _activateListeners() {
+    _database1
+        .child('users')
+        .child('dXW7J3c8HXYYiWDcp1rZhO7wq3I3')
+        .child('HTips')
+        .child('1656227187')
+        //.child('tips')
+        .onValue
+        .listen((event) {
+      final String description = event.snapshot.value.toString();
+      setState(() {
+        _done1 = description;
+      });
+    });
+  }
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        backgroundColor: Colors.orange,
+          appBar: header(context, titleText: 'Notifications'),
+          body: SafeArea(
+            child: Container(
+              width: 115,
+              height: 145,
+              margin: EdgeInsets.fromLTRB(80, 20, 20, 20),
+              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xFF959595)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                color: Color(0xFFB2FFA6),
+              ),
+              alignment: Alignment.topCenter,
+              child: Text(
+                'Health Tips\n\n' + _done1,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ));
+    }
+  }
+
   getActivityFeed() async {
     QuerySnapshot snapshot = await activityFeedRef
         .doc(currentUser.id)
@@ -48,7 +103,6 @@ class _ActivityFeedState extends State<ActivityFeed> {
       )),
     );
   }
-}
 
 Widget? mediaPreview;
 String? activityItemText;
@@ -186,3 +240,4 @@ showProfile(BuildContext context, {String? profileId}) {
     ),
   );
 }
+  

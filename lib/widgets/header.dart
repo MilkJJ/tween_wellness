@@ -10,10 +10,11 @@ AppBar header(context,
         color: Colors.white,
         fontFamily: isAppTitle ? "Signatra" : "",
         fontSize: isAppTitle ? 30.0 : 22.0,
+        
       ),
       overflow: TextOverflow.ellipsis,
     ),
     centerTitle: true,
-    backgroundColor: Theme.of(context).accentColor,
+    backgroundColor: Theme.of(context).colorScheme.secondary,
   );
 }

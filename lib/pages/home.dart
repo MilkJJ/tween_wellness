@@ -130,12 +130,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: PageView(
         children: <Widget>[
-          Timeline(currentUser: currentUser),
-          ActivityFeed(),
-          Upload(currentUser: currentUser),
-          Activity(),
-          Search(),
-          Profile(profileId: currentUser.id!),
+          Timeline(currentUser: currentUser), //Timeline
+          ActivityFeed(), //Notifications
+          //Upload(currentUser: currentUser),
+          Activity(), //My Activity
+          Search(), //Search User
+          Profile(profileId: currentUser.id!), //Profile
         ],
         controller: pageController,
         onPageChanged: onPageChanged,
@@ -148,12 +148,12 @@ class _HomeState extends State<Home> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.whatshot)),
             BottomNavigationBarItem(icon: Icon(Icons.notifications_active)),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.photo_camera,
-                size: 35.0,
-              ),
-            ),
+            //BottomNavigationBarItem(
+            //  icon: Icon(
+            //    Icons.photo_camera,
+            //    size: 35.0,
+            //  ),
+            //),
             BottomNavigationBarItem(icon: Icon(Icons.local_activity)),
             BottomNavigationBarItem(icon: Icon(Icons.search)),
             BottomNavigationBarItem(icon: Icon(Icons.account_circle)),

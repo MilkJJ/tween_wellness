@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:tween_wellness/models/user.dart';
+import 'package:tween_wellness/pages/communities.dart';
 import 'package:tween_wellness/pages/home.dart';
 import 'package:tween_wellness/widgets/progress.dart';
 import 'package:geolocator/geolocator.dart';
@@ -77,7 +78,7 @@ class _UploadState extends State<Upload>
 
   Container buildSplashScreen() {
     return Container(
-      color: Theme.of(context).accentColor.withOpacity(0.6),
+      color: Theme.of(context).colorScheme.secondary.withOpacity(1),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -97,6 +98,21 @@ class _UploadState extends State<Upload>
                 ),
                 color: Colors.deepOrange,
                 onPressed: () => selectImage(context)),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: ElevatedButton.icon(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white12),
+              ),
+              onPressed: () => {Navigator.pop(context)},
+              icon: Icon(
+                // <-- Icon
+                Icons.assignment_return_rounded,
+                size: 24.0,
+              ),
+              label: Text('Return'), // <-- Text
+            ),
           ),
         ],
       ),

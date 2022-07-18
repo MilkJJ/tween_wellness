@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tween_wellness/models/user.dart';
 import 'package:tween_wellness/pages/home.dart';
 import 'package:tween_wellness/pages/search.dart';
+import 'package:tween_wellness/pages/upload.dart';
 import 'package:tween_wellness/widgets/header.dart';
 import 'package:tween_wellness/widgets/post.dart';
 import 'package:tween_wellness/widgets/progress.dart';
@@ -59,6 +60,27 @@ class _TimelineState extends State<Timeline> {
     } else if (posts.isEmpty) {
       return buildUsersToFollow();
     } else {
+      Align(
+        alignment: Alignment(0.9, -1),
+        child: ElevatedButton.icon(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.greenAccent),
+             ),
+          onPressed: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Upload(currentUser: currentUser)),
+            )
+          },
+          icon: Icon(
+            // <-- Icon
+            Icons.photo_camera,
+            size: 24.0,
+          ),
+          label: Text('+Upload'), // <-- Text
+        ),
+      );
       return ListView(children: posts);
     }
   }
@@ -87,9 +109,28 @@ class _TimelineState extends State<Timeline> {
           }
         });
         return Container(
-          color: Theme.of(context).accentColor.withOpacity(0.2),
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
           child: Column(
             children: <Widget>[
+              Align(
+                alignment: Alignment(0.9, -1),
+                child: ElevatedButton.icon(
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Upload(currentUser: currentUser)),
+                    )
+                  },
+                  icon: Icon(
+                    // <-- Icon
+                    Icons.photo_camera,
+                    size: 24.0,
+                  ),
+                  label: Text('+Upload'), // <-- Text
+                ),
+              ),
               Container(
                 padding: EdgeInsets.all(12.0),
                 child: Row(

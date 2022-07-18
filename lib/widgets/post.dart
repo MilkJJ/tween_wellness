@@ -140,7 +140,11 @@ class _PostState extends State<Post> {
             children: <Widget>[
               SimpleDialogOption(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => Home()),
+    );
                     deletePost();
                   },
                   child: Text(
@@ -261,24 +265,24 @@ class _PostState extends State<Post> {
         alignment: Alignment.center,
         children: <Widget>[
           cachedNetworkImage(mediaUrl),
-          showHeart
-              ? Animator(
-                  duration: Duration(milliseconds: 300),
-                  tween: Tween(begin: 0.8, end: 1.4),
-                  curve: Curves.elasticOut,
-                  cycles: 0,
-                  builder: (BuildContext context,
-                      AnimatorState<double> animatorState, Widget? child) {
-                    scale: context.read;
-                    child: Icon(
-                      Icons.favorite,
-                      size: 80.0,
-                      color: Colors.red,
-                    );
-                    return child!; 
-                  },
-                )
-              : Text(""),
+          // showHeart
+          //     ? Animator(
+          //         duration: Duration(milliseconds: 300),
+          //         tween: Tween(begin: 0.8, end: 1.4),
+          //         curve: Curves.elasticOut,
+          //         cycles: 0,
+          //         builder: (BuildContext context,
+          //             AnimatorState<double> animatorState, Widget? child) {
+          //           scale: context.read;
+          //           child: Icon(
+          //             Icons.favorite,
+          //             size: 80.0,
+          //             color: Colors.red,
+          //           );
+          //           return child!; 
+          //         },
+          //       )
+          //     : Text(""),
         ],
       ),
     );

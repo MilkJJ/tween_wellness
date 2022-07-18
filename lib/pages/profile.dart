@@ -167,7 +167,7 @@ class _ProfileState extends State<Profile> {
 
   handleUnfollowUser() {
     setState(() {
-      isFollowing = false;
+      isFollowing = true; //false
     });
     // remove follower
     followersRef
