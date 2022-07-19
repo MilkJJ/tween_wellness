@@ -14,10 +14,9 @@ class _ActivityState extends State<Activity> {
 }
 
 @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.orange,
-      appBar: header(context, titleText: "My Activities"),
-
-    );
-  }
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.orange,
+    appBar: header(context, titleText: "My Activities"),
+  );
+}
