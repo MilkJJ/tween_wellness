@@ -29,7 +29,7 @@
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                     "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:label="tween_wellness" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -50,7 +50,6 @@
     	<meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
         
-    <uses-permission android:name="android.permission.INTERNET"/>
 
     </application>
 </manifest>
