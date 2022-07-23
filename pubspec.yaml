@@ -80,7 +80,7 @@ flutter:
   # assets:
   assets:
     - assets/images/google_signin_button.png
-    - assets/images/fb.png
+    - assets/images/facebook.png
     - assets/images/search.svg
     - assets/images/upload.svg
     - assets/images/no_content.svg

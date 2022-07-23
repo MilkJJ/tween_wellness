@@ -233,12 +233,13 @@ class _HomeState extends State<Home> {
             GestureDetector(
               onTap: facebooklogin,
               child: Container(
-                width: 340.0,
+                width: 300.0,
                 height: 60.0,
+                margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                      'assets/images/fb.png',
+                      'assets/images/facebook.png',
                     ),
                     fit: BoxFit.cover,
                   ),
