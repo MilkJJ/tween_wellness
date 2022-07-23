@@ -48,6 +48,7 @@ dependencies:
   animator: ^3.2.0
   firebase_core: ^1.19.1
   firebase_database: ^9.0.19
+  flutter_facebook_auth: ^4.4.0+1
 
 
 dev_dependencies:

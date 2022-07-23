@@ -12,6 +12,8 @@ import 'package:tween_wellness/pages/communities.dart';
 import 'package:tween_wellness/pages/upload.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'facebook_login.dart';
+
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final Reference storageRef = FirebaseStorage.instance.ref();
 final usersRef = FirebaseFirestore.instance.collection('users');
@@ -21,6 +23,7 @@ final activityFeedRef = FirebaseFirestore.instance.collection('feed');
 final followersRef = FirebaseFirestore.instance.collection('followers');
 final followingRef = FirebaseFirestore.instance.collection('following');
 final timelineRef = FirebaseFirestore.instance.collection('timeline');
+final activityUser = FirebaseFirestore.instance.collection('activities');
 final DateTime timestamp = DateTime.now();
 User currentUser = User(id: '107236734546032898199');
 
@@ -205,7 +208,23 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-            )
+            ),
+
+            GestureDetector(
+              onTap: signInWithFacebook,
+              child: Container(
+                width: 260.0,
+                height: 60.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/fb.png',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
