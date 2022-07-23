@@ -166,7 +166,7 @@ class _EditProfileState extends State<EditProfile> {
                         child: Text(
                           "Update Profile",
                           style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).canvasColor ,
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),

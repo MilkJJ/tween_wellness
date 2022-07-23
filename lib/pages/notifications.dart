@@ -51,7 +51,7 @@ class _ActivityFeedState extends State<ActivityFeed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.amber ,
         appBar: header(context, titleText: 'Notifications'),
         body: Center(
           child: Padding(
@@ -83,17 +83,16 @@ class _ActivityFeedState extends State<ActivityFeed> {
                       myTips.forEach((key, value) {
                         final nextTips = Map<String, dynamic>.from(value);
                         final tipsTile = ListTile(
-                            leading: Icon(Icons.local_cafe),
+                            leading: Image.network(nextTips['url'],
+                                height: 100,
+                                width: 100), //Icon(Icons.local_cafe)
                             title: Text(nextTips['tips']),
                             subtitle: Text(nextTips['tips_image']));
-
                         tilesList.add(tipsTile);
                       });
                     }
                     return Expanded(
-                      child: ListView(
-                        children: tilesList,
-                      ),
+                      child: ListView(children: tilesList),
                     );
                   },
                 )

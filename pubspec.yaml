@@ -84,6 +84,7 @@ flutter:
     - assets/images/search.svg
     - assets/images/upload.svg
     - assets/images/no_content.svg
+    - assets/images/fb.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
