@@ -1,4 +1,4 @@
-import 'package:flutter/src/foundation/key.dart';
+/*import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter/material.dart';
@@ -44,4 +44,4 @@ class _FacebookLoginState extends State<FacebookLogin> {
           ],
         ));
   }
-}
+}*/

@@ -11,8 +11,8 @@ import 'package:tween_wellness/pages/search.dart';
 import 'package:tween_wellness/pages/communities.dart';
 import 'package:tween_wellness/pages/upload.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-import 'facebook_login.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final Reference storageRef = FirebaseStorage.instance.ref();
@@ -129,6 +129,26 @@ class _HomeState extends State<Home> {
     );
   }
 
+ // function for facebook login
+  facebooklogin() async {
+    var result = await FacebookAuth.i.login(
+      permissions: ["public_profile", "email"],
+    );
+
+    // check the status of our login
+    if (result.status == LoginStatus.success) {
+      final requestData = await FacebookAuth.i.getUserData(
+        fields: "email, name, picture",
+      );
+    }
+  }
+
+  // logout
+
+  facebooklogout() async {
+    await FacebookAuth.i.logOut();
+  }
+
   Scaffold buildAuthScreen() {
     return Scaffold(
       body: PageView(
@@ -208,12 +228,12 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-            ),
+            ), 
 
             GestureDetector(
-              onTap: signInWithFacebook,
+              onTap: facebooklogin,
               child: Container(
-                width: 260.0,
+                width: 340.0,
                 height: 60.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -224,7 +244,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-            ),
+            ), 
           ],
         ),
       ),
