@@ -61,14 +61,14 @@ class _ActivityState extends State<Activity> {
     DocumentSnapshot doc3 = await activityUser.doc(currentUser.id).get();
     if (!doc3.exists) {
     } else {
-      setState(() {
+      /*setState(() {
         final int actDone1 = doc3.get("activitiesDone");
         final int actProgress1 = doc3.get("activitiesInProgress");
         final int actTotalPoints1 = doc3.get("totalPoints");
         done1 = actDone1.toString();
         progress1 = actProgress1.toString();
         points1 = actTotalPoints1.toString();
-      });
+      };*/
     }
   }
 
