@@ -86,7 +86,7 @@ class _ActivityState extends State<Activity> {
                     Container(
                       width: 115,
                       height: 145,
-                      margin: EdgeInsets.fromLTRB(80, 30, 0, 0),
+                      margin: EdgeInsets.fromLTRB(85, 30, 0, 0),
                       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       decoration: BoxDecoration(
                         border: Border.all(color: Color(0xFF959595)),
@@ -156,15 +156,7 @@ class _ActivityState extends State<Activity> {
                       margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                       child: ElevatedButton(
                         onPressed: () {
-                          //GOES TO NEW ACTIVITY
-                        },
-                        child: Text("Activity History"),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: ElevatedButton(
-                        onPressed: () {
+                          //REFRESH PAGE
                           setState(() {
                             getNameUser1();
                             checkUser();

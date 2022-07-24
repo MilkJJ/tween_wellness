@@ -1,5 +1,6 @@
 import 'dart:async';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:tween_wellness/models/user.dart';
 import 'package:tween_wellness/pages/home.dart';
@@ -15,6 +16,8 @@ int reps_session = 0;
 int time_session = 0;
 int points_session = 0;
 int countdowntime = 0;
+int update_act1 = 0;
+int update_pts1 = 0;
 Timer? timer;
 
 class Activity_Session1 extends StatefulWidget {
@@ -52,6 +55,37 @@ class _Activity_Session1State extends State<Activity_Session1> {
     countdowntime = time_session;
   }
 
+  insertCompletedActivity() {
+    activityUser
+        .doc(currentUser.id)
+        .collection("activitiesCompleted")
+        .doc()
+        .set({
+      "activityName": act_session,
+      "sets": sets_session,
+      "reps": reps_session,
+      "duration": time_session,
+      "points earned": points_session,
+      "completion DateTime": DateTime.now(),
+    });
+  }
+
+  getCompletedActivityAndPoints() async {
+    DocumentSnapshot doc1 = await activityUser.doc(currentUser.id).get();
+    final int update_act2 = doc1.get("activitiesDone");
+    final int update_pts2 = doc1.get("totalPoints");
+    update_act1 = update_act2;
+    update_pts1 = update_pts2;
+    updateCompletedActivity();
+  }
+
+  updateCompletedActivity() {
+    activityUser.doc(currentUser.id).update({
+      "activitiesDone": update_act1 + 1,
+      "totalPoints": update_pts1 + points_session,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,19 +116,38 @@ class _Activity_Session1State extends State<Activity_Session1> {
   }
 
   void startTimer() {
-    timer = Timer.periodic(Duration(microseconds: 1), (timer) {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (seconds > 0) {
         setState(() {
           seconds--;
         });
       } else {
-        Navigator.popUntil(context, (route) => route.isFirst);
+        timer.cancel();
+        getCompletedActivityAndPoints();
+        insertCompletedActivity();
+        //DIALOG BOX==========================================================
+        AlertDialog alert1 = AlertDialog(
+          title: Text("Activity Completed"),
+          content: Text("Activity Completed for $act_session"),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                },
+                child: Text("Ok")),
+          ],
+        );
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert1;
+            });
+        //DIALOG BOX==========================================================
       }
     });
   }
 
   Widget buildButtons() {
-    final isCompleted = timer == 0;
     return ElevatedButton(
         onPressed: () {
           startTimer();
