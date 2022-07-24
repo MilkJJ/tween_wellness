@@ -24,20 +24,20 @@ class _ActivityState extends State<Activity> {
   @override
   void initState() {
     super.initState();
-    getNameUser1();
-    checkUser();
+    getNameUser1(); //GETS USER'S NAME FROM FIRESTORE
+    checkUser(); //CHECKS IF USER DATA IS IN ACTIVITIES COLLECTION IN FIRESTORE
   }
 
-  //TO CHECK NAME OF USER ACCORDING TO ID===================================
+  //TO GET NAME OF USER ACCORDING TO ID===================================
   getNameUser1() async {
     DocumentSnapshot doc1 = await usersRef.doc(currentUser.id).get();
     final String description = doc1.get("displayName");
     name1 = description;
     name2 = name1;
   }
-  //TO CHECK NAME OF USER ACCORDING TO ID===================================
+  //TO GET NAME OF USER ACCORDING TO ID===================================
 
-  //TO CHECK AND CREATE DATA INTO ACTIVITIES TABLE OF FIRESTORE=============
+  //TO CHECK AND CREATE ACTIVITIES COLLECTION IN FIRESTORE================
   checkUser() async {
     DocumentSnapshot doc2 = await activityUser.doc(currentUser.id).get();
     if (doc2.exists) {
@@ -51,8 +51,9 @@ class _ActivityState extends State<Activity> {
       });
     }
   }
-  //TO CHECK AND CREATE DATA INTO ACTIVITIES TABLE OF FIRESTORE=============
+  //TO CHECK AND CREATE ACTIVITIES COLLECTION IN FIRESTORE================
 
+  //TO GET NUMBER OF COMPLETED ACTIVITY AND TOTAL POINTS EARNED=============
   getActStatistics() async {
     DocumentSnapshot doc3 = await activityUser.doc(currentUser.id).get();
     if (!doc3.exists) {
@@ -63,6 +64,7 @@ class _ActivityState extends State<Activity> {
       points1 = actTotalPoints1.toString();
     }
   }
+  //TO GET NUMBER OF COMPLETED ACTIVITY AND TOTAL POINTS EARNED=============
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +136,7 @@ class _ActivityState extends State<Activity> {
                   children: [
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: ElevatedButton(
+                      child: ElevatedButton( //NEW ACTIVITY BUTTON
                         onPressed: () {
                           //GOES TO NEW ACTIVITY
                           Navigator.push(
@@ -142,7 +144,7 @@ class _ActivityState extends State<Activity> {
                                   MaterialPageRoute(
                                       builder: (context) => New_Activities()))
                               .then((value) {
-                            setState(() {
+                            setState(() { //FOR WHEN COMING BACK TO THIS PAGE
                               getNameUser1();
                               checkUser();
                               getActStatistics();
@@ -154,10 +156,10 @@ class _ActivityState extends State<Activity> {
                     ),
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                      child: ElevatedButton(
+                      child: ElevatedButton( //REFRESH BUTTON
                         onPressed: () {
                           //REFRESH PAGE
-                          setState(() {
+                          setState(() { //FOR WHEN COMING BACK TO THIS PAGE
                             getNameUser1();
                             checkUser();
                             getActStatistics();

@@ -33,6 +33,7 @@ class _Activity_Session1State extends State<Activity_Session1> {
   @override
   void initState() {
     super.initState();
+    //TO ADD IN THE CURRENTLY SELECTED ACTIVITY INTO VARIABLES================
     if (x1 == 1) {
       act_session = act_name1;
       sets_session = one_set;
@@ -53,8 +54,10 @@ class _Activity_Session1State extends State<Activity_Session1> {
       points_session = points_3;
     }
     countdowntime = time_session;
+    //TO ADD IN THE CURRENTLY SELECTED ACTIVITY INTO VARIABLES================
   }
 
+  //INSERT COMPLETED ACTIVITY INTO FIRESTORE==================================
   insertCompletedActivity() {
     activityUser
         .doc(currentUser.id)
@@ -69,22 +72,27 @@ class _Activity_Session1State extends State<Activity_Session1> {
       "completion DateTime": DateTime.now(),
     });
   }
+  //INSERT COMPLETED ACTIVITY INTO FIRESTORE==================================
 
+  //GET TOTAL COMPLETED ACTIVITY NUMBER AND TOTAL POINTS======================
   getCompletedActivityAndPoints() async {
     DocumentSnapshot doc1 = await activityUser.doc(currentUser.id).get();
     final int update_act2 = doc1.get("activitiesDone");
     final int update_pts2 = doc1.get("totalPoints");
     update_act1 = update_act2;
     update_pts1 = update_pts2;
-    updateCompletedActivity();
+    updateCompletedActivity(); //UPDATES ACT AND POINTS
   }
+  //GET TOTAL COMPLETED ACTIVITY NUMBER AND TOTAL POINTS======================
 
+  //UPDATE TOTAL COMPLETED ACTIVITY NUMBER AND TOTAL POINTS===================
   updateCompletedActivity() {
     activityUser.doc(currentUser.id).update({
       "activitiesDone": update_act1 + 1,
       "totalPoints": update_pts1 + points_session,
     });
   }
+  //UPDATE TOTAL COMPLETED ACTIVITY NUMBER AND TOTAL POINTS===================
 
   @override
   Widget build(BuildContext context) {
@@ -103,9 +111,9 @@ class _Activity_Session1State extends State<Activity_Session1> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  buildTime(),
+                  buildTime(), //TO BUILD TIMER
                   const SizedBox(height: 80),
-                  buildButtons(),
+                  buildButtons(), //TO BUILD START TIMER BUTTON
                 ],
               ),
             ),
@@ -115,6 +123,7 @@ class _Activity_Session1State extends State<Activity_Session1> {
     );
   }
 
+  //START TIMER WHEN THE BUTTON IS PRESSED====================================
   void startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (seconds > 0) {
@@ -122,9 +131,9 @@ class _Activity_Session1State extends State<Activity_Session1> {
           seconds--;
         });
       } else {
-        timer.cancel();
-        getCompletedActivityAndPoints();
-        insertCompletedActivity();
+        timer.cancel(); //STOPS TIMER ONCE IT REACHES ZERO
+        getCompletedActivityAndPoints(); //GETS CURRENT COMPLETED ACTS
+        insertCompletedActivity(); //INSERTS COMPLETED ACT INTO FIRESTORE
         //DIALOG BOX==========================================================
         AlertDialog alert1 = AlertDialog(
           title: Text("Activity Completed"),
@@ -146,7 +155,9 @@ class _Activity_Session1State extends State<Activity_Session1> {
       }
     });
   }
+  //START TIMER WHEN THE BUTTON IS PRESSED====================================
 
+  //WIDGET TO START THE TIMER=================================================
   Widget buildButtons() {
     return ElevatedButton(
         onPressed: () {
@@ -154,7 +165,9 @@ class _Activity_Session1State extends State<Activity_Session1> {
         },
         child: Text("Start Timer"));
   }
+  //WIDGET TO START THE TIMER=================================================
 
+  //WIDGET TO BUILD THE TIMER (TIME WILL DECREASE DURING COUNTDOWN)===========
   Widget buildTime() {
     return Text(
       '$seconds',
@@ -165,4 +178,5 @@ class _Activity_Session1State extends State<Activity_Session1> {
       ),
     );
   }
+  //WIDGET TO BUILD THE TIMER (TIME WILL DECREASE DURING COUNTDOWN)===========
 }
