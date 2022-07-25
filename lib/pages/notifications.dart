@@ -87,7 +87,7 @@ class _ActivityFeedState extends State<ActivityFeed> {
                                 height: 100,
                                 width: 100), //Icon(Icons.local_cafe)
                             title: Text(nextTips['tips']),
-                            subtitle: Text(nextTips['tips_image']));
+                            subtitle: Text(nextTips['tips_desc']));
                         tilesList.add(tipsTile);
                       });
                     }
