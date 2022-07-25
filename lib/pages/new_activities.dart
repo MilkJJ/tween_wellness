@@ -41,7 +41,7 @@ class _New_ActivitiesState extends State<New_Activities> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              //ACTIVITY 1=====================================================
+              //ACTIVITY 1 - LUNGES============================================
               Container(
                 width: 220,
                 height: 150,
@@ -66,7 +66,7 @@ class _New_ActivitiesState extends State<New_Activities> {
                         "\nCompletion Points: " +
                         points_1.toString() +
                         " points"),
-                    ElevatedButton(
+                    ElevatedButton( //START ACTIVITY LUNGES
                         onPressed: () {
                           AlertDialog alert1 = AlertDialog(
                             title: Text("Activity Confirmation"),
@@ -100,9 +100,9 @@ class _New_ActivitiesState extends State<New_Activities> {
                   ],
                 ),
               ),
-              //ACTIVITY 1=====================================================
+              //ACTIVITY 1 - LUNGES============================================
 
-              //ACTIVITY 2=====================================================
+              //ACTIVITY 2 - SQUATS============================================
               Container(
                 width: 220,
                 height: 150,
@@ -127,7 +127,7 @@ class _New_ActivitiesState extends State<New_Activities> {
                         "\nCompletion Points: " +
                         points_2.toString() +
                         " points"),
-                    ElevatedButton(
+                    ElevatedButton( //START ACTIVITY SQUATS
                         onPressed: () {
                           //DIALOG BOX=========================================
                           AlertDialog alert2 = AlertDialog(
@@ -163,9 +163,9 @@ class _New_ActivitiesState extends State<New_Activities> {
                   ],
                 ),
               ),
-              //ACTIVITY 2=====================================================
+              //ACTIVITY 2 - SQUATS============================================
 
-              //ACTIVITY 3=====================================================
+              //ACTIVITY 3 - PUSH UPS==========================================
               Container(
                 width: 220,
                 height: 150,
@@ -190,7 +190,7 @@ class _New_ActivitiesState extends State<New_Activities> {
                         "\nCompletion Points: " +
                         points_3.toString() +
                         " points"),
-                    ElevatedButton(
+                    ElevatedButton( //START ACTIVITY PUSH UPS
                         onPressed: () {
                           //DIALOG BOX=========================================
                           AlertDialog alert3 = AlertDialog(
@@ -226,10 +226,10 @@ class _New_ActivitiesState extends State<New_Activities> {
                   ],
                 ),
               ),
-              //ACTIVITY 3=====================================================
+              //ACTIVITY 3 - PUSH UPS==========================================
               Container(
                 margin: EdgeInsets.fromLTRB(100, 10, 0, 0),
-                child: ElevatedButton(
+                child: ElevatedButton( //BACK TO MY ACTIVITIES PAGE
                     onPressed: () {
                       Navigator.pop(context);
                     },
